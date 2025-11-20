@@ -33,8 +33,8 @@ Tras meses de investigación, pruebas y prototipado, nació **Petify CleanPaws**
 Un equipo multidisciplinario comprometido con la innovación y el bienestar animal:
 
 - **Diroska** – Fundadora & Diseñadora Industrial  
-- **Ali** – Co-fundadora & Diseñadora Industrial (UX)  
-- **Ander** – Co-fundadora & Desarrolladora Frontend  
+- **Ali** – Co-fundadora & Diseñadora Industrial
+- **Ander** – Ayudante  
 
 ### Valores del equipo:
 - 🎯 **Innovación constante**
@@ -47,9 +47,6 @@ Un equipo multidisciplinario comprometido con la innovación y el bienestar anim
 
 Incluye imágenes del producto en uso para mostrar su funcionamiento real y su diseño intuitivo.
 
-> *(Aquí puedes insertar tus imágenes con Markdown, por ejemplo:)*  
-> `![CleanPaws en uso](ruta-de-la-imagen.jpg)`
-
 ---
 
 ## 🌟 Misión
@@ -57,7 +54,4 @@ Incluye imágenes del producto en uso para mostrar su funcionamiento real y su d
 En **Petify** creemos que cada mascota merece lo mejor.  
 Nuestra misión es crear soluciones innovadoras que simplifiquen la vida de mascotas y dueños, manteniendo siempre la **calidad**, la **comodidad** y el **bienestar animal** como prioridad.
 
----
-
-✨ *Gracias por visitar este proyecto. CleanPaws es apenas el comienzo de una nueva forma de cuidar a quienes más queremos.*  
 
