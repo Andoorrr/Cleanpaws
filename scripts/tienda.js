@@ -1,7 +1,7 @@
 // ===== VARIABLES GLOBALES =====
 let cart = [];
 
-// ===== SISTEMA DE BÚSQUEDA =====
+// ===== SISTEMA DE BÚSQUEDA OPTIMIZADO =====
 function initializeSearch() {
     const searchInput = document.querySelector('.search-input');
     let searchTimeout;
@@ -97,7 +97,7 @@ function showSearchResults(count, searchTerm) {
     productsContainer.insertBefore(message, productsContainer.firstChild);
 }
 
-// ===== SISTEMA DE ORDENAMIENTO =====
+// ===== SISTEMA DE ORDENAMIENTO OPTIMIZADO =====
 function initializeSortBy() {
     const sortSelect = document.querySelector('.sort-select');
     
@@ -106,7 +106,7 @@ function initializeSortBy() {
     });
 }
 
-// Ordenamiento sin animaciones
+// OPTIMIZADO: Ordenamiento sin animaciones
 function sortProducts(sortType) {
     const productsContainer = document.querySelector('.products-container');
     const productCards = Array.from(document.querySelectorAll('.product-card'));
@@ -144,7 +144,90 @@ function getProductRating(card) {
     return parseInt(ratingText.replace('(', '').replace(')', ''));
 }
 
-// ===== SISTEMA DE CARRITO =====
+// ===== SISTEMA DE FILTRADO POR CATEGORÍA =====
+function initializeCategoryFilters() {
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    
+    filterButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            // Remover clase active de todos los botones
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            
+            // Agregar clase active al botón clickeado
+            this.classList.add('active');
+            
+            // Obtener categoría del botón
+            const category = this.getAttribute('data-category');
+            
+            // Filtrar productos
+            filterByCategory(category);
+        });
+    });
+}
+
+function filterByCategory(category) {
+    const productCards = document.querySelectorAll('.product-card');
+    let visibleCount = 0;
+    
+    productCards.forEach(card => {
+        const productCategory = card.getAttribute('data-category');
+        
+        if (category === 'all' || productCategory === category) {
+            card.style.display = 'block';
+            visibleCount++;
+        } else {
+            card.style.display = 'none';
+        }
+    });
+    
+    // Mostrar mensaje si no hay productos en la categoría
+    showCategoryResults(visibleCount, category);
+}
+
+function showCategoryResults(count, category) {
+    const productsContainer = document.querySelector('.products-container');
+    
+    // Remover mensaje anterior
+    const existingMessage = document.querySelector('.category-results-message');
+    if (existingMessage) {
+        existingMessage.remove();
+    }
+    
+    // Solo mostrar mensaje si no hay productos
+    if (count === 0) {
+        const message = document.createElement('div');
+        message.className = 'category-results-message';
+        message.style.cssText = `
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 1.5rem;
+            border-radius: 15px;
+            background: rgba(255, 0, 0, 0.05);
+            border: 2px solid rgba(255, 0, 0, 0.1);
+            margin-bottom: 1rem;
+        `;
+        
+        const categoryNames = {
+            'comederos': 'Comederos',
+            'juguetes': 'Juguetes',
+            'accesorios': 'Accesorios',
+            'salud': 'Salud'
+        };
+        
+        message.innerHTML = `
+            <p style="margin: 0 0 0.5rem 0; color: #e74c3c; font-size: 1.125rem; font-weight: 700;">
+                No hay productos en esta categoría
+            </p>
+            <p style="margin: 0; color: #666; font-size: 0.95rem;">
+                No se encontraron productos en la categoría "<strong>${categoryNames[category]}</strong>"
+            </p>
+        `;
+        
+        productsContainer.insertBefore(message, productsContainer.firstChild);
+    }
+}
+
+// ===== SISTEMA DE CARRITO OPTIMIZADO =====
 function initializeCart() {
     const addToCartButtons = document.querySelectorAll('.add-to-cart-btn');
     
@@ -194,7 +277,7 @@ function updateCartCount() {
     }
 }
 
-// OPTIMIZADO: Modal del carrito
+// OPTIMIZADO: Modal del carrito sin backdrop-filter
 function showCartModal() {
     if (cart.length === 0) {
         showNotification('El carrito está vacío', 'info');
@@ -367,7 +450,7 @@ function closeModal(modal) {
     setTimeout(() => modal.remove(), 200);
 }
 
-// ===== VISTA RÁPIDA =====
+// ===== VISTA RÁPIDA OPTIMIZADA =====
 function initializeQuickView() {
     const quickViewButtons = document.querySelectorAll('.quick-view-btn');
     
@@ -379,7 +462,7 @@ function initializeQuickView() {
     });
 }
 
-// OPTIMIZADO: Vista rápidar
+// OPTIMIZADO: Vista rápida sin backdrop-filter
 function showQuickView(productCard) {
     const product = {
         name: productCard.querySelector('.product-name').textContent,
@@ -552,7 +635,7 @@ function initializeLoadMore() {
     }
 }
 
-// ===== SISTEMA DE NOTIFICACIONES =====
+// ===== SISTEMA DE NOTIFICACIONES OPTIMIZADO =====
 function showNotification(message, type = 'success') {
     const notification = document.createElement('div');
     notification.className = 'notification';
@@ -625,7 +708,7 @@ function initializeNewsletterForm() {
     }
 }
 
-// ===== ESTILOS CSS =====
+// ===== ESTILOS CSS OPTIMIZADOS =====
 const style = document.createElement('style');
 style.textContent = `
     /* Modales optimizados */
@@ -691,6 +774,7 @@ document.head.appendChild(style);
 // ===== INICIALIZACIÓN =====
 document.addEventListener('DOMContentLoaded', function() {
     initializeSearch();
+    initializeCategoryFilters();
     initializeSortBy();
     initializeCart();
     initializeQuickView();
